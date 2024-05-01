@@ -40,7 +40,7 @@ def loop():
         print(f'ADC Value : {value_17}, Voltage : {voltage:.2f}')
         time.sleep(0.03)
 
-        # read the ADC value of channel 0
+        # read the ADC value of channel 1
         value_27 = ADC.analogRead(1)  # Gets a value between 0 and 255
         # Set LED brightness directly with value from ADC
         LED2.value = value_27 / 255.0  # Value of PWM LED must be between 0 and 1
