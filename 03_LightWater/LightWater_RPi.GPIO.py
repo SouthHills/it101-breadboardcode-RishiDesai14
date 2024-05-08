@@ -22,7 +22,7 @@ def loop():
             GPIO.output(pin, GPIO.LOW)
 
 def destroy():
-    GPIO.cleanup()                     # Release all GPIO
+    GPIO.cleanup()# Release all GPIO
 
 if __name__ == '__main__':     # Program entrance
     print ('Program is starting...')
