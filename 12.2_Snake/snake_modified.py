@@ -1,6 +1,7 @@
 # NOTE: If running the game gives you an error, run either "sudo apt install python3-pygame" OR "pip install pygame" in the terminal.
 import pygame
 import random
+from joystick import Joystick
 
 pygame.init()
 
@@ -10,6 +11,8 @@ GRID_WIDTH, GRID_HEIGHT = 28, 24  # 28 columns x 24 rows
 WIDTH, HEIGHT = GRID_WIDTH * GRID_SIZE, GRID_HEIGHT * GRID_SIZE
 WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Snake Game - Score: 0")
+
+joystick = Joystick()
 
 # Colors
 WHITE = (255, 255, 255)
@@ -41,18 +44,18 @@ def generate_food():
     return random.randrange(GRID_WIDTH), random.randrange(GRID_HEIGHT)
 
 def do_keypress_event(current_direction):
-    global PAUSED
+    global PAUSED, joystick
     # TODO: Replace "False" with the correct method call to the joystick object you make
     # Can't double-back on your snake
-    if False and current_direction != "RIGHT":
+    if joystick.get_direction() == "Left" and current_direction != "RIGHT":
         return "LEFT"
-    elif False and current_direction != "LEFT":
+    elif joystick.get_direction() == "Right" and current_direction != "LEFT":
         return "RIGHT"
-    elif False and current_direction != "DOWN":
+    elif joystick.get_direction() == "Up" and current_direction != "DOWN":
         return "UP"
-    elif False and current_direction != "UP":
+    elif joystick.get_direction() == "Down" and current_direction != "UP":
         return "DOWN"
-    elif False: # Pressing in on the joystick should pause the game
+    elif joystick.get_button_pressed(): # Pressing in on the joystick should pause the game
         PAUSED = True
 
 # Function to main loop
@@ -96,7 +99,7 @@ def game_loop():
                             quit() # Kill program
                 
                 # TODO: Replace "False" with a call to the appropriate method in your joystick instance
-                if False:
+                if joystick.get_button_pressed() == True:
                     PAUSED = False
 
             # Input handling
@@ -162,7 +165,7 @@ def game_loop():
                         game_over = True
             
             # TODO: Replace "False" with a call to the appropriate method in your joystick instance
-            if False:
+            if joystick.get_button_pressed() == True:
                 game_close = False
                 game_over = False
 
